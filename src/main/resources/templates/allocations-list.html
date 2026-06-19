@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Allocations List</title>
+</head>
+<body>
+
+<h1>Allocated Rooms</h1>
+
+<table border="1">
+
+<tr>
+    <th>Allocation ID</th>
+    <th>Student ID</th>
+    <th>Room ID</th>
+</tr>
+
+<tr th:each="allocation : ${allocations}">
+    <td th:text="${allocation.id}"></td>
+    <td th:text="${allocation.studentId}"></td>
+    <td th:text="${allocation.roomId}"></td>
+</tr>
+
+</table>
+
+</body>
+</html>

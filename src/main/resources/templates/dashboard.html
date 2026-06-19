@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hostel Dashboard</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body{
+    background:#f4f6f9;
+}
+
+.card-box{
+    color:white;
+    border-radius:10px;
+    padding:20px;
+}
+
+.students{
+    background:#0d6efd;
+}
+
+.rooms{
+    background:#198754;
+}
+
+.allocations{
+    background:#ffc107;
+    color:black;
+}
+
+.available{
+    background:#dc3545;
+}
+
+.fees{
+    background:#0dcaf0;
+}
+
+.complaints{
+    background:#6f42c1;
+}
+</style>
+
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <span class="navbar-brand">
+            Hostel Management System
+        </span>
+    </div>
+</nav>
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-4">Dashboard</h1>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card-box students">
+                <h4>Total Students</h4>
+                <h2 th:text="${studentCount}"></h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-box rooms">
+                <h4>Total Rooms</h4>
+                <h2 th:text="${roomCount}"></h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-box allocations">
+                <h4>Allocations</h4>
+                <h2 th:text="${allocationCount}"></h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-box available">
+                <h4>Available Rooms</h4>
+                <h2 th:text="${availableRooms}"></h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-box fees">
+                <h4>Total Fees</h4>
+                <h2>₹ <span th:text="${totalFees}"></span></h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-box complaints">
+                <h4>Complaints</h4>
+                <h2 th:text="${complaintCount}"></h2>
+            </div>
+        </div>
+        <div class="card mt-4 p-3">
+
+    <h4 class="text-center">Hostel Statistics</h4>
+
+    <canvas id="hostelChart"></canvas>
+    </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+
+        <a href="/students/view" class="btn btn-primary">
+            Students
+        </a>
+
+        <a href="/rooms/view" class="btn btn-success">
+            Rooms
+        </a>
+
+        <a href="/allocations" class="btn btn-warning">
+            Allocate Room
+        </a>
+
+        <a href="/allocations/view" class="btn btn-info">
+            View Allocations
+        </a>
+
+        <a href="/fees/view" class="btn btn-secondary">
+            Fees
+        </a>
+
+        <a href="/complaints" class="btn btn-danger">
+            Complaints
+        </a>
+
+        <a href="/complaints/view" class="btn btn-dark">
+            View Complaints
+        </a>
+        <a href="/logout" class="btn btn-danger">
+        Logout
+        </a>
+
+    </div>
+
+</div>
+<script th:inline="javascript">
+
+const ctx = document.getElementById('hostelChart');
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [
+            'Students',
+            'Rooms',
+            'Allocations',
+            'Complaints'
+        ],
+        datasets: [{
+            label: 'Hostel Statistics',
+            data: [
+                /*[[${studentCount}]]*/ 0,
+                /*[[${roomCount}]]*/ 0,
+                /*[[${allocationCount}]]*/ 0,
+                /*[[${complaintCount}]]*/ 0
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+</script>
+
+</body>
+</html>

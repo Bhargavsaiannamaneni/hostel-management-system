@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Room Allocation</title>
+</head>
+<body>
+
+<h1>Allocate Student to Room</h1>
+<div class="alert alert-danger"
+     th:if="${error}"
+     th:text="${error}">
+</div>
+<div class="alert alert-danger"
+     th:if="${error}"
+     th:text="${error}">
+</div>
+
+<form th:action="@{/allocate}" method="post">
+
+    <label>Select Student:</label>
+    <select name="student.id">
+        <option th:each="student : ${students}"
+                th:value="${student.id}"
+                th:text="${student.name}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <label>Select Room:</label>
+    <select name="room.id">
+        <option th:each="room : ${rooms}"
+                th:value="${room.id}"
+                th:text="${room.roomNumber}">
+        </option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Allocate Room</button>
+
+</form>
+
+</body>
+</html>

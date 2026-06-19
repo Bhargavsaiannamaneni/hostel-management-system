@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Fee Management</title>
+</head>
+<body>
+
+<h1>Add Student Fee</h1>
+
+<form th:action="@{/fees/save}" method="post">
+
+    <label>Student Name:</label>
+    <input type="text" name="studentName">
+    <br><br>
+
+    <label>Amount:</label>
+    <input type="number" name="amount">
+    <br><br>
+
+    <label>Status:</label>
+    <select name="status">
+        <option value="PAID">PAID</option>
+        <option value="UNPAID">UNPAID</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Save Fee</button>
+
+</form>
+
+</body>
+</html>
